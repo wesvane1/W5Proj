@@ -1,8 +1,8 @@
-###
-GET http://localhost:3000/ HTTP/1.1
+### Get all users
+GET http://localhost:8080/users HTTP/1.1
 
-###
-GET http://localhost:3000/reg HTTP/1.1
+### Get savanna
+GET http://localhost:8080/users/65c2ac3deaa6087e3c359b70
 
 ###
 https://cse341personal-eys5.onrender.com HTTP/1.1
