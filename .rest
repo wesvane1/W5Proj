@@ -2,4 +2,10 @@
 GET http://localhost:3000/ HTTP/1.1
 
 ###
-GET http://localhost:3000/reg
+GET http://localhost:3000/reg HTTP/1.1
+
+###
+https://cse341personal-eys5.onrender.com HTTP/1.1
+
+###
+https://cse341personal-eys5.onrender.com/reg HTTP/1.1
