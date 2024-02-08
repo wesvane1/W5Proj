@@ -11,11 +11,71 @@ const getAll = async (req, res, next) => {
 
 const getSingle = async (req, res, next) => {
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('recipes').find({ _id: userId });
+  const result = await mongodb.getDb().db().collection('recipies').find({ _id: userId });
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
   });
 };
 
-module.exports = { getAll, getSingle };
+const createRecipe = async (req, res, next) => {
+  const recipe = {
+    recipe_name: req.body.recipe_name,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    total_time: req.body.total_time,
+    difficulty: req.body.difficulty,
+    tags: req.body.tags
+  };
+  const response = await mongodb.getDb().db().collection('recipies').insertOne(recipe);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the recipe.');
+  }
+};
+
+const updateRecipe = async (req, res) => {
+  const recipeId = new ObjectId(req.params.id);
+  const filter = { _id: recipeId };
+  const recipe = {
+    recipe_name: req.body.recipe_name,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    total_time: req.body.total_time,
+    difficulty: req.body.difficulty,
+    tags: req.body.tags
+  };
+  const response = await mongodb.getDb().db().collection('recipies').replaceOne(filter, recipe);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res
+      .status(500)
+      .json(response.error || 'An error occurred and we were not able to update your recipe.');
+  }
+};
+
+const deleteRecipes = async (req, res, next) => {
+  const recipeId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('recipies').find({ _id: recipeId });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+const deleteRecipe = async (req, res) => {
+  const recipeId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('recipies').deleteOne({ _id: recipeId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  }
+  else {
+    res.status(500).json(response.error || 'An error occurred while deleting, probably wrong ID');
+  }
+};
+
+module.exports = { getAll, getSingle, createRecipe, updateRecipe, deleteRecipe };

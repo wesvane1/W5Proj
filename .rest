@@ -4,8 +4,17 @@ GET http://localhost:8080/recipes HTTP/1.1
 ### Get savanna
 GET http://localhost:8080/recipes/65c2b2e0eaa6087e3c359b79
 
+### Create a new recipe
+POST http://localhost:8080/recipes
+
+### Update a recipie
+PUT http://localhost:8080/recipes/65c53f3fda34673b212ad027
+
+### Delete a recipie
+DELETE http://localhost:8080/recipes/65c53f3fda34673b212ad027
+
 ### Gets all users
 GET https://cse341personal-35nf.onrender.com/recipes
 
 ### Gets just Wes
-GET https://cse341personal-35nf.onrender.com/recipes/65c2b2e0eaa6087e3c359b79 HTTP/1.1
+GET https://cse341personal-35nf.onrender.com/recipes/65c2b2e0eaa6087e3c359b79
