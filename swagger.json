@@ -5,7 +5,7 @@
     "description": "This is where all recipes are held.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341personal-35nf.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
