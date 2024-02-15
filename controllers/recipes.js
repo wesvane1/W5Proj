@@ -14,7 +14,7 @@ const getAll = async (req, res, next) => {
 
 const getSingle = async (req, res, next) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to find a recipe.');
+    res.status(400).json('Must use a valid id to find a recipe.');
   }
   const recipeId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('recipies').find({ _id: recipeId });
@@ -47,7 +47,7 @@ const createRecipe = async (req, res, next) => {
 
 const updateRecipe = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to update a contact.');
+    res.status(400).json('Must use a valid id to update a recipe.');
   }
   const recipeId = new ObjectId(req.params.id);
   const filter = { _id: recipeId };
@@ -80,7 +80,7 @@ const deleteRecipes = async (req, res, next) => {
 };
 const deleteRecipe = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to delete a contact.');
+    res.status(400).json('Must use a valid id to delete a recipe.');
   }
   const recipeId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('recipies').deleteOne({ _id: recipeId }, true);
