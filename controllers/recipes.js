@@ -3,16 +3,25 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
   const result = await mongodb.getDb().db().collection('recipies').find();
-  result.toArray().then((lists) => {
+  result.toArray().then((err, lists) => {
+    if (err){
+      res.status(400).json({message: err});
+    }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
   });
 };
 
 const getSingle = async (req, res, next) => {
-  const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('recipies').find({ _id: userId });
-  result.toArray().then((lists) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to find a recipe.');
+  }
+  const recipeId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('recipies').find({ _id: recipeId });
+  result.toArray().then((err, lists) => {
+    if (err){
+      res.status(400).json({ message: err });
+    }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
   });
@@ -37,6 +46,9 @@ const createRecipe = async (req, res, next) => {
 };
 
 const updateRecipe = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to update a contact.');
+  }
   const recipeId = new ObjectId(req.params.id);
   const filter = { _id: recipeId };
   const recipe = {
@@ -49,8 +61,8 @@ const updateRecipe = async (req, res) => {
     tags: req.body.tags
   };
   const response = await mongodb.getDb().db().collection('recipies').replaceOne(filter, recipe);
-  if (response.acknowledged) {
-    res.status(201).json(response);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
   } else {
     res
       .status(500)
@@ -67,6 +79,9 @@ const deleteRecipes = async (req, res, next) => {
   });
 };
 const deleteRecipe = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to delete a contact.');
+  }
   const recipeId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('recipies').deleteOne({ _id: recipeId }, true);
   console.log(response);
@@ -74,7 +89,7 @@ const deleteRecipe = async (req, res) => {
     res.status(204).send();
   }
   else {
-    res.status(500).json(response.error || 'An error occurred while deleting, probably wrong ID');
+    res.status(500).json(response.error || 'An error occurred while deleting the recipe.');
   }
 };
 
