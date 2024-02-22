@@ -4,7 +4,11 @@ const router = express.Router();
 const recipesController = require('../controllers/recipes');
 const validation = require('../middleware/validate')
 
-router.get('/', recipesController.getAll);
+router.get('/', () => {
+  res.render('../views')
+});
+
+router.get('/getAll', recipesController.getAll);
 
 router.get('/:id', recipesController.getSingle);
 

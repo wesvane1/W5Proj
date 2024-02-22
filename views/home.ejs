@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Landing Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to your CSS file for styling -->
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Homepage</a></li>
+    </ul>
+  </nav>
+    <div class="container">
+        <h1>Welcome to Our Application</h1>
+        <p>Please sign in to continue:</p>
+
+        <!-- OAuth Sign-in Buttons -->
+        <div class="oauth-buttons">
+            <a href="oauth/facebook" class="oauth-button facebook">Sign in with Facebook</a>
+            <a href="oauth/google" class="oauth-button google">Sign in with Google</a>
+            <!-- Add more OAuth provider buttons as needed -->
+        </div>
+
+        <!-- Or Traditional Sign-in Form -->
+        <form action="login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Sign in</button>
+        </form>
+
+        <p>Don't have an account? <a href="signup">Sign up here</a></p>
+    </div>
+</body>
+</html>

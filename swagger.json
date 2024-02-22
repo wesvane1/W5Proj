@@ -5,10 +5,10 @@
     "description": "This is where all recipes are held.",
     "version": "1.0.0"
   },
-  "host": "cse341personal-35nf.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/recipes/": {
