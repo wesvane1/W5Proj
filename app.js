@@ -9,10 +9,9 @@ const { auth, requiresAuth } = require('express-openid-connect');
 const port = process.env.PORT
 const app = express();
 
-app.use(auth(config))
 
 app
-  .use('/api-docs', requiresAuth(), swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
