@@ -20,6 +20,11 @@ router.get('/checkLoginStatus', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
+app.get('/profile', requiresAuth(), (req, res) =>{
+  res.send(JSON.stringify(req.oidc.user));
+});
+
+
 router.use('/recipes', require('./recipes'));
 
 module.exports = router;
