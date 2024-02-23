@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-const { auth, requiresAuth } = require('express-openid-connect');
 
 
 const port = process.env.PORT
