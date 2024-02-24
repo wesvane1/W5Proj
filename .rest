@@ -1,3 +1,9 @@
+### This allows you to sign in
+GET https://cse341personal-35nf.onrender.com/profile
+
+### This gets you to API-Docs
+GET https://cse341personal-35nf.onrender.com/api-docs
+
 ### Get all users
 GET http://localhost:8080/recipes HTTP/1.1
 
