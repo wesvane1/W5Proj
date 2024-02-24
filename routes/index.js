@@ -4,7 +4,6 @@ const { auth, requiresAuth } = require('express-openid-connect');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const port = process.env.PORT || 3000;
 const config = {
   authRequired: false,
   auth0Logout: true,
