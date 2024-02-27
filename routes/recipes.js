@@ -7,9 +7,9 @@ const { requiresAuth } = require('express-openid-connect');
 const recipesController = require('../controllers/recipes');
 const validation = require('../middleware/validate')
 
-router.get('/', requiresAuth(), recipesController.getAll);
+router.get('/', recipesController.getAll);
 
-router.get('/:id', requiresAuth(), recipesController.getSingle);
+router.get('/:id', recipesController.getSingle);
 
 router.post('/', requiresAuth(), validation.saveRecipe, recipesController.createRecipe);
 
