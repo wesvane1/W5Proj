@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Sour Dough API",
-    "description": "This is where all recipes and users are held.",
+    "description": "This is where all routes are held.",
     "version": "1.0.0"
   },
   "host": "cse341personal-35nf.onrender.com",
@@ -199,6 +199,30 @@
         "description": "",
         "produces": [
           "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {

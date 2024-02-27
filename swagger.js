@@ -3,10 +3,10 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'Sour Dough API',
-    description: 'This is where all recipes are held.'
+    description: 'This is where all routes are held.'
   },
-  host: 'localhost:8080',
-  schemes: ['http']
+  host: 'cse341personal-35nf.onrender.com',
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';
