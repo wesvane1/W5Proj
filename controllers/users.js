@@ -27,6 +27,39 @@ const getSingle = async (req, res, next) => {
   });
 };
 
+const createUser = async (req, res, next) => {
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const response = await mongodb.getDb().db().collection('users').insertOne(user);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the User.');
+  }
+};
+
+const updateUser = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid id to update a user.');
+  }
+  const userId = new ObjectId(req.params.id);
+  const filter = { _id: userId };
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const response = await mongodb.getDb().db().collection('users').replaceOne(filter, user);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res
+      .status(500)
+      .json(response.error || 'An error occurred and we were not able to update your User.');
+  }
+};
+
 const deleteSingle = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid id to delete a user.');
@@ -42,4 +75,4 @@ const deleteSingle = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getSingle, deleteSingle }
+module.exports = { getAll, getSingle, createUser, updateUser, deleteSingle }
