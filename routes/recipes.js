@@ -9,7 +9,7 @@ const validation = require('../middleware/validate')
 
 router.get('/', recipesController.getAll);
 
-router.get('/:id', recipesController.getSingle);
+router.get('/getSingle:id', recipesController.getSingle);
 
 router.post('/', requiresAuth(), validation.saveRecipe, recipesController.createRecipe);
 
