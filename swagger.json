@@ -93,7 +93,7 @@
         }
       }
     },
-    "/recipes/{getSingleid}": {
+    "/recipes/getSingle/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -101,7 +101,7 @@
         ],
         "parameters": [
           {
-            "name": "getSingleid",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
