@@ -11,9 +11,9 @@ router.get('/getAll/', recipesController.getAll);
 
 router.get('/getSingle/:id', recipesController.getSingle);
 
-router.post('/', requiresAuth(), validation.saveRecipe, recipesController.createRecipe);
+router.post('/createRecipe/', requiresAuth(), validation.saveRecipe, recipesController.createRecipe);
 
-router.put('/:id', requiresAuth(), validation.saveRecipe, recipesController.updateRecipe);
+router.put('/updateRecipe/:id', requiresAuth(), validation.saveRecipe, recipesController.updateRecipe);
 
 router.delete('/:id', requiresAuth(), recipesController.deleteRecipe);
 
