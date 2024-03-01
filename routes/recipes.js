@@ -15,6 +15,6 @@ router.post('/createRecipe/', requiresAuth(), validation.saveRecipe, recipesCont
 
 router.put('/updateRecipe/:id', requiresAuth(), validation.saveRecipe, recipesController.updateRecipe);
 
-router.delete('/:id', requiresAuth(), recipesController.deleteRecipe);
+router.delete('/deleteRecipe/:id', requiresAuth(), recipesController.deleteRecipe);
 
 module.exports = router;
