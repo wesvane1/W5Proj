@@ -176,7 +176,7 @@
         }
       }
     },
-    "/recipes/{id}": {
+    "/recipes/deleteRecipe/{id}": {
       "delete": {
         "description": "",
         "parameters": [
