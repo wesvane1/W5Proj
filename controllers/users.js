@@ -17,7 +17,7 @@ const getSingle = async (req, res, next) => {
     res.status(400).json('Must use a valid id to find a user.');
   }
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('users').find();
+  const result = await mongodb.getDb().db().collection('recipies').find({ _id: userId });
   result.toArray().then((err, lists) =>{
     if (err){
       res.status(400).json({ message: err });
