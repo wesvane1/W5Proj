@@ -216,7 +216,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/getSingle/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -238,7 +238,42 @@
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/users/createSingle/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/updateSingle/{id}": {
       "put": {
         "description": "",
         "parameters": [
@@ -270,39 +305,6 @@
           },
           "400": {
             "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/users/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
           },
           "412": {
             "description": "Precondition Failed"
