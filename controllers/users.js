@@ -12,12 +12,12 @@ const getAll = async (req, res, next) =>{
   });
 };
 
-const getSingle = async (req, res, next) => {
+const getSingleUser = async (req, res, next) => {
   if (!ObjectId.isValid(req.params.id)){
     res.status(400).json('Must use a valid id to find a user.');
   }
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('recipies').find({ _id: userId });
+  const result = await mongodb.getDb().db().collection('users').find({ _id: userId });
   result.toArray().then((err, lists) =>{
     if (err){
       res.status(400).json({ message: err });
@@ -75,4 +75,4 @@ const deleteSingle = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getSingle, createUser, updateUser, deleteSingle }
+module.exports = { getAll, getSingleUser, createUser, updateUser, deleteSingle }
